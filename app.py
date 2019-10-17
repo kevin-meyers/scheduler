@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, url_for
 from pymongo import MongoClient
 
@@ -15,4 +17,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    classtimes.insert_one({'name': 'cs1.1', 'timeslot': 1})
     return 'Hey world.'
