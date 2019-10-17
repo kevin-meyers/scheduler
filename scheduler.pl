@@ -34,10 +34,15 @@ valid(X, Y) :-
 
 	\+ (Class1 = Class2), \+ (Time1 = Time2).
 
+maplist(valid(
+
 /* As of right now my code will find pairs of classes that go together if you 
 * query for valid.
 *
 * Need to allow user to query a relation like `choices([class names])` 
 * which will search for classes that fit together within the time slot constraints with 
 * no repeating classes.
+* 
+* Im thinking just looping over the incoming list of class names and finding classes that
+* match by no overlapping time slot.
 */

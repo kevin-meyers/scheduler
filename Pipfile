@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pyswip = "*"
+flask = "*"
+gunicorn = "*"
+pymongo = {extras = ["srv"],version = "*"}
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
