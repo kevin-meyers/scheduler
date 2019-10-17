@@ -3,31 +3,41 @@ class('cs1.1').
 class('spd1.1').
 class('ql1.1').
 
-day(monday). /* Swap to time-day slots for super easy overlay checking*/
-day(tuesday).
-day(wednesday).
-day(thursday).
-day(friday).
 
-timerange([1330, 1500]). /* Swap these to time slots for simplicity. */
-timerange([1530, 1700]).
+/* Time-Day to labels. 
+* Monday/Wednesday 9:30 - 11:20: 1
+* Monday/Wednesday 1:30 - 3:20: 2
+* Monday/Wednesday 3:30 - 5:20: 3
+* Tuesday/Thursday 9:30 - 11:20: 4
+* Tuesday/Thursday 1:30 - 3:20: 5
+* Tuesday/Thursday 3:30 - 5:20: 6
+* Friday 9:30 - 11:20: 7
+* Friday 1:30 - 3:20: 8
+* Friday 3:30 - 5:20: 9
+ */
 
-classtime('bew1.1', day(monday), timerange(1330)).
-classtime()
+classtime(class('bew1.1'), time_slot(2)).
+classtime(class('bew1.1'), time_slot(3)).
+classtime(class('cs1.1'), time_slot(5)).
+classtime(class('cs1.1'), time_slot(6)).
+classtime(class('spd1.1'), time_slot(1)).
 
-daytime(Day, Range) :- day(Day), timerange(Range).
-
-list_nonmember(Xs,E) :-
-       maplist(dif(E),Xs).
-
-none_intersect(Xs,Ys) :-
-       maplist(list_nonmember(Ys),Xs).
+classtime(class('lab'), time_slot(X)) :- 
+	between(1, 6, X).
 
 valid(X, Y) :- 
-	X = daytime(Day1, Range1),
-	Y = daytime(Day2, Range2),
+	X = classtime(Class1, Time1),
+	Y = classtime(Class2, Time2),
+
 	call(X),
 	call(Y),
-	none_intersect(Range1, Range2); \+ (Day1 = Day2).
 
+	\+ (Class1 = Class2), \+ (Time1 = Time2).
 
+/* As of right now my code will find pairs of classes that go together if you 
+* query for valid.
+*
+* Need to allow user to query a relation like `choices([class names])` 
+* which will search for classes that fit together within the time slot constraints with 
+* no repeating classes.
+*/
