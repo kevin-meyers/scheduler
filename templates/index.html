@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<h1>Scheduler!</h1>
+
+<form>
+	<button type='submit' formaction='/view'>View Classes</button>
+	<button type='submit' formaction='/add'>Add New Class</button>
+	<button type='submit' formaction='/build-schedule'>Build A Schedule</button>
+
+</form>
+
+{% endblock %}

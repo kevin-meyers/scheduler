@@ -4,4 +4,4 @@ Then it will consult scheduler.pl to query for class times using prolog.query.
 
 Will then display times to webpage with beautifying in the future.
 
-
+Hosted on https://prolog-scheduler.herokuapp.com/

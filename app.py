@@ -17,5 +17,20 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    classtimes.insert_one({'name': 'cs1.1', 'timeslot': 1})
-    return 'Hey world.'
+
+    return render_template('index.html')
+
+
+@app.route('/view')
+def view_classes():
+    return render_template('class_list.html', classes=classtimes.find())
+
+
+@app.route('/add')
+def add_class():
+    return 'add new class here'
+
+
+@app.route('/build-schedule')
+def build_schedule():
+    return 'build schedule here'

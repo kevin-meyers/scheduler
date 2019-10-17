@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<h1>Class List</h1>
+
+
+<div class='class-list'>
+
+	<table>
+	<tbody>
+
+		<tr>
+			<th>Class Name</th>
+			<th>Instructor Name</th>
+
+		</tr>
+		
+		{% for class in classes %}
+			<tr>
+				<td>{{ class['name'] }}</td>
+				<td>{{ class['instructor'] }}</td>
+
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+
+	</table>
+
+{% endblock %}
