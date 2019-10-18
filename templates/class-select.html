@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('#btn').click(function(){
+		$('form').append(
+			'<select>{% for class in classes %}<option value="{{ class }}>{{ class }}</option>{% endfor %}</select>'
+		);
+	});
+});
+
+</script>
+
+<form action=''>
+	<select>
+		{% for class in classes %}
+		<option value='{{ class }}'>{{ class }}</option>
+		{% endfor %}
+	</select>
+
+	<button type='button' id='btn'>Add Another</button>
+
+	<button type='submit'>Generate Schedule</button>
+</form>
+
+{% endblock %}

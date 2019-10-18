@@ -18,7 +18,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 
-    return render_template('test.html')
+    return render_template('index.html')
 
 
 @app.route('/view')
@@ -41,4 +41,4 @@ def add_classtime():
 
 @app.route('/build-schedule')
 def build_schedule():
-    return 'build schedule here'
+    return render_template('class-select.html', classes = classtimes.distinct('name'))
