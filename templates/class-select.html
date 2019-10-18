@@ -8,23 +8,23 @@
 $(document).ready(function(){
 	$('#btn').click(function(){
 		$('form').append(
-			'<select>{% for class in classes %}<option value="{{ class }}>{{ class }}</option>{% endfor %}</select>'
+			'<select name="select">{% for class in classes %}<option value="{{ class }}">{{ class }}</option>{% endfor %}</select>'
 		);
 	});
 });
 
 </script>
 
-<form action=''>
-	<select>
-		{% for class in classes %}
-		<option value='{{ class }}'>{{ class }}</option>
-		{% endfor %}
-	</select>
-
+<form action='/build-schedule' method='POST'>
 	<button type='button' id='btn'>Add Another</button>
 
 	<button type='submit'>Generate Schedule</button>
+
+	<select name='select'>
+		{% for class in classes %}
+			<option value='{{ class }}'>{{ class }}</option>
+		{% endfor %}
+	</select>
 </form>
 
 {% endblock %}

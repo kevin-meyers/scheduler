@@ -2,7 +2,10 @@ import os
 
 from flask import Flask, render_template, request, url_for, redirect
 from pymongo import MongoClient
+from pyswip import Prolog
 
+prolog = Prolog()
+prolog.consult('Scheduler.pl')
 
 client = MongoClient(
     f'mongodb+srv://{os.getenv("MONGODB_USER")}:{os.getenv("MONGODB_PASSWORD")}@'
@@ -39,6 +42,12 @@ def add_classtime():
     return redirect(url_for('view_classes'))
 
 
-@app.route('/build-schedule')
-def build_schedule():
+@app.route('/choose-classes')
+def choose_classes():
     return render_template('class-select.html', classes = classtimes.distinct('name'))
+
+
+@app.route('/build-schedule', methods=['GET', 'POST'])
+def build_schedule():
+    choices = request.form.getlist('select')
+    
