@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<h1>Add a New Class</h1>
+
+<form method='POST' action='/add_classtime'>
+	{% for field in fields %}
+		<h2>{{ field }}</h2>
+		<input type='text' name='{{ field }}' required>
+	
+	{% endfor %}
+
+	<button type='submit'>Add Class</button>
+
+</form>
+
+{% endblock %}

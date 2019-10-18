@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from pymongo import MongoClient
 
 
@@ -18,7 +18,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 
-    return render_template('index.html')
+    return render_template('test.html')
 
 
 @app.route('/view')
@@ -28,7 +28,15 @@ def view_classes():
 
 @app.route('/add')
 def add_class():
-    return 'add new class here'
+    return render_template(
+        'class_add.html', fields=['name', 'time', 'instructor']
+    )
+
+
+@app.route('/add_classtime', methods=['POST'])
+def add_classtime():
+    classtimes.insert_one(request.form.to_dict())
+    return redirect(url_for('view_classes'))
 
 
 @app.route('/build-schedule')
