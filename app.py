@@ -2,15 +2,15 @@ import os
 
 from flask import Flask, render_template, request, url_for, redirect
 from pymongo import MongoClient
-from pyswip import *
+#from pyswip import *
 
-prolog = Prolog()
-prolog.consult('scheduler.pl')
+#prolog = Prolog()
+#prolog.consult('scheduler.pl')
 
-scheduler = Functor('scheduler', 2)
-class_name = Functor('class', 1)
-time_slot = Functor('time', 1)
-course = Functor('course', 2)
+#scheduler = Functor('scheduler', 2)
+#class_name = Functor('class', 1)
+#time_slot = Functor('time', 1)
+#course = Functor('course', 2)
 
 
 client = MongoClient(
